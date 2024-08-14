@@ -51,20 +51,29 @@
   border: none;
   color: #212121;
   opacity: 70%;
-  width: fit-content;
+  width: max-content;
   background-color: #fcf5e5;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
+  cursor: pointer;
+  position: relative;
+  left: 20px;
+}
+
+.profile__edit-button::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/pencil-logo.svg);
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -20px;
+
 }
 
 .profile__edit-button:hover {
   opacity: 1;
-}
-
-.profile__pencil-logo {
-  color:#212121;
-  padding-right: 8px;
 }
 
 .profile__add-button {
@@ -79,6 +88,22 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
+  cursor: pointer;
+  position: relative;
+  text-align:right;
+  padding-right: 24px;
+}
+
+.profile__add-button::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-size: 100%;
+  background-image: url(../images/button_plus_sign.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 33px;
+  bottom: 20px;
 }
 
 .profile__add-button:hover {
@@ -91,7 +116,7 @@
   padding-right: 8px;
 }
 
-@media screen and (max-width: 627px) {
+@media screen and (max-width: 670px) {
   .profile {
     flex-direction: column;
     max-width: 288px;
@@ -120,13 +145,23 @@
     max-width: 288px;
   }
 
-
   .profile__edit-button{
     margin: 0 auto 20px;
+    padding-right: 15px;
+
+  }
+
+  .profile__edit-button::before{
+    left: -23px;
   }
 
   .profile__add-button {
     margin: 0 auto;
     width: 288px;
+    padding-right: 97px;
+  }
+
+  .profile__add-button::before {
+    left: 98px;
   }
 }

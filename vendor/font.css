@@ -1,8 +1,0 @@
-@font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    /* Replace with the appropriate font wieght */
-    font-weight: 400;
-    /*Replace with the correct file path */
-    src: url("../Fonts/Poppins/Poppins-Regular.ttf") format("truetype");
-}
