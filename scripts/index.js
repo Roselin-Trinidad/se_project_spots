@@ -43,10 +43,13 @@ const cardsList = document.querySelector(".cards__list");
 
 // Add Card Elements
 const addCardModal = document.querySelector("#add-card-modal");
+const addCardModalForm = addCardModal.querySelector(".modal__form")
 const addCardLinkInput = addCardModal.querySelector("#add-card-link-input");
 const addCardNameInput = addCardModal.querySelector("#add-card-name-input");
 const closeAddCardModalButton = addCardModal.querySelector(".modal__close-button");
 
+
+// Card Element Information Functions
 function getCardElement(data) {
   const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
   const cardNameElement = cardElement.querySelector(".card__title");
@@ -62,10 +65,10 @@ function getCardElement(data) {
 
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
-  cardsList.append(cardElement)
+  cardsList.append(cardElement);
 })
 
-
+// Opening and Closing Modal Functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
 }
@@ -74,6 +77,7 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
+// Profile Submission Function
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = editModalNameInput.value;
@@ -81,6 +85,7 @@ function handleEditFormSubmit(evt) {
   closeModal(editModal);
 }
 
+// Profile Edit Button Event Listeners
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
@@ -91,6 +96,7 @@ editModalCloseButton.addEventListener("click", () => {
 });
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 
+// Add Card Event Button Listener
 addCardButton.addEventListener("click", () => {
   openModal(addCardModal);
 });
@@ -99,3 +105,16 @@ closeAddCardModalButton.addEventListener("click", () => {
   closeModal(addCardModal);
 });
 
+// Add Card Submission Function and Listener
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  const inputValues = {
+    Name: addCardNameInput.value,
+    Link: addCardLinkInput.value
+  };
+  const cardElement = getCardElement(inputValues);
+  cardsList.prepend(cardElement);
+  closeModal(addCardModal);
+}
+
+addCardModalForm.addEventListener("submit", handleAddCardSubmit);
