@@ -24,6 +24,7 @@ const initialCards = [
     Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+
 // Profile Elements
 const profileEditButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button")
@@ -53,16 +54,27 @@ const closeAddCardModalButton = addCardModal.querySelector(".modal__close-button
 function getCardElement(data) {
   const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
   const cardNameElement = cardElement.querySelector(".card__title");
-
   const cardImageElement = cardElement.querySelector(".card__image");
+  const cardLikeButton = cardElement.querySelector(".card__like-button");
+  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
 
   cardNameElement.textContent = data.Name;
   cardImageElement.textContent = data.Link;
   cardImageElement.src = data.Link;
   cardImageElement.alt = data.Name;
+
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle("card__like-button_liked");
+  });
+
+  cardDeleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
   return cardElement;
 }
 
+// Initial Card Array forEach Loop
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
@@ -91,9 +103,11 @@ profileEditButton.addEventListener("click", () => {
   editModalDescriptionInput.value = profileDescription.textContent;
   openModal(editModal);
 });
+
 editModalCloseButton.addEventListener("click", () => {
   closeModal(editModal);
 });
+
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 
 // Add Card Event Button Listener
@@ -118,3 +132,4 @@ function handleAddCardSubmit(evt) {
 }
 
 addCardModalForm.addEventListener("submit", handleAddCardSubmit);
+
