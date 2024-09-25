@@ -101,11 +101,13 @@ initialCards.forEach((item) => {
 
 // Opening and Closing Modal Functions
 function openModal(modal) {
+  modal.classList.add("modal_opened-display");
   modal.classList.add("modal_opened");
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  modal.classList.remove("modal_open-display");
 }
 
 // Profile Submission Function
