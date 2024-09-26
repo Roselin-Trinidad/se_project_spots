@@ -12,17 +12,11 @@
   opacity: 0;
   transition: visibility 0s linear 0.5s, opacity 0.5s linear;
   pointer-events: none;
-}
-
-.preview-modal {
-  display: none;
-}
-
-.modal_opened-display {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .modal_opened {
@@ -136,6 +130,7 @@
 @media  screen and (max-width: 670px) {
   .modal {
     padding: 0 10px;
+
   }
 
   .modal__container {
