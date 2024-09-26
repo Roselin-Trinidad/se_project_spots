@@ -45,6 +45,11 @@ const editModalDescriptionInput = editModal.querySelector("#profile-description-
 // Card Elements
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+const cardNameElement = cardElement.querySelector(".card__title");
+const cardImageElement = cardElement.querySelector(".card__image");
+const cardLikeButton = cardElement.querySelector(".card__like-button");
+const cardDeleteButton = cardElement.querySelector(".card__delete-button");
 
 // Add Card Elements
 const addCardModal = document.querySelector("#add-card-modal");
@@ -112,8 +117,6 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
-
-
 //Preview Closing Listener
 previewCloseButton.addEventListener("click", () => {
   closeModal(previewModal);
@@ -153,8 +156,8 @@ addCardButton.addEventListener("click", () => {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = {
-    Name: addCardNameInput.value,
-    Link: addCardLinkInput.value
+    Name: addCardNameInput.value = "",
+    Link: addCardLinkInput.value = "",
   };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
