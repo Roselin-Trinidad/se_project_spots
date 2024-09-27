@@ -67,15 +67,11 @@ const previewCloseButton = previewModal.querySelector(".modal__close-button_type
 
 // Card Element Information Functions
 function getCardElement(data) {
-  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+ const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
   const cardNameElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardLikeButton = cardElement.querySelector(".card__like-button");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  const previewModal = document.querySelector("#preview-modal");
-  const previewImageElement = previewModal.querySelector(".modal__image");
-  const previewCaptionElement = previewModal.querySelector(".modal__caption");
-  const previewCloseButton = previewModal.querySelector(".modal__close-button_type_preview");
 
   cardNameElement.textContent = data.Name;
   cardImageElement.src = data.Link;
