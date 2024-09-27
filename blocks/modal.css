@@ -40,6 +40,8 @@
   padding: 0;
   background-color: transparent;
   width: fit-content;
+  max-width: 80vw;
+  max-height: 80vh;
 }
 
 .modal__image {
@@ -144,6 +146,8 @@
   .modal__container_type_preview {
     padding: 0;
     width: 288px;
+    max-width: 100vw;
+  max-height: 100vh;
   }
 
   .modal__title {
