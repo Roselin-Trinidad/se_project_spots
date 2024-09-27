@@ -78,7 +78,6 @@ function getCardElement(data) {
   const previewCloseButton = previewModal.querySelector(".modal__close-button_type_preview");
 
   cardNameElement.textContent = data.Name;
-  cardImageElement.content = data.Link;
   cardImageElement.src = data.Link;
   cardImageElement.alt = data.Name;
 
