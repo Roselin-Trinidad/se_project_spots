@@ -38,8 +38,6 @@
 
 .modal__container_type_preview {
   padding: 0;
-  max-width: 80vw;
-  max-height: 80vh;
   background-color: transparent;
   width: fit-content;
 }
@@ -145,6 +143,7 @@
 
   .modal__container_type_preview {
     padding: 0;
+    width: 288px;
   }
 
   .modal__title {
@@ -155,8 +154,13 @@
   }
 
   .modal__close-button {
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal__close-button_type_preview {
     top: -40px;
-    left: 224px;
+    left: 248px;
     width: 40px;
     height: 40px;
   }
