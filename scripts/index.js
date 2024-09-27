@@ -150,18 +150,16 @@ addCardButton.addEventListener("click", () => {
 // Add Card Submission Function and Listener
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  let inputValues = {
+  const inputValues = {
     Name: addCardNameInput.value,
     Link: addCardLinkInput.value,
   };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
   closeModal(addCardModal);
-  inputValues = {
-    Name: addCardNameInput.value = "",
-    Link: addCardLinkInput.value= "",
+  addCardModalForm.reset();
   };
-}
+
 
 addCardModalForm.addEventListener("submit", handleAddCardSubmit);
 
