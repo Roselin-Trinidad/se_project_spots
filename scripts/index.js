@@ -159,7 +159,5 @@ function handleAddCardSubmit(evt) {
   closeModal(addCardModal);
   addCardModalForm.reset();
   };
-
-
-addCardModalForm.addEventListener("submit", handleAddCardSubmit);
+  addCardModalForm.addEventListener("submit", handleAddCardSubmit);
 
