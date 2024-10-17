@@ -156,8 +156,10 @@ function handleAddCardSubmit(evt) {
   };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
-  closeModal(addCardModal);
   addCardModalForm.reset();
+  toggleButtonState();
+  closeModal(addCardModal);
+
   };
   addCardModalForm.addEventListener("submit", handleAddCardSubmit);
 

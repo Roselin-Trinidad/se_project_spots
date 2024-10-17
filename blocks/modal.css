@@ -122,10 +122,9 @@
   border: 1px solid rgba(33 33, 33, 0.4);
 }
 
-/*.modal__input:invalid {
+.modal__input_type_error {
   border: solid 1px rgba(255, 0, 0, 0.6);
-
-} */
+}
 
 .modal__error {
   display: block;
@@ -133,7 +132,6 @@
   font-size: 16px;
   line-height: 1.1;
 }
-
 
 .modal__submit-button {
   width: 156px;
@@ -143,6 +141,14 @@
   border: none;
   color: #fcf5e5;
   cursor: pointer;
+}
+
+.modal__input-button:hover {
+  opacity: 0.8;
+}
+
+.modal__submit-button_disabled {
+  opacity: 0.5;
 }
 
 @media  screen and (max-width: 670px) {
