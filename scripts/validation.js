@@ -3,8 +3,8 @@ const settings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-button",
   inactiveButtonClass: "modal__submit-button_disabled",
-  inputErrorClass: ".modal__input_type_error",
-  errorClass: ".modal__error",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error",
 };
 
 const showInputError = (formElement, inputElement, errorMessage) => {
