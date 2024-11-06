@@ -102,10 +102,10 @@ function getCardElement(data) {
 };
 
 // Render Card Function
-function renderCard(item, method = "append") {
+/*function renderCard(item, method = "append") {
   const cardElement = getCardElement(item);
   cardsList[method](cardElement);
-};
+}; */
 
 
 // Initial Card Array forEach Loop
