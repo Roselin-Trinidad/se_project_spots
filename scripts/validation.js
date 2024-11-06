@@ -7,23 +7,25 @@ const settings = {
   errorClass: "modal__error",
 };
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorMessageElement.textContent = errorMessage;
   inputElement.classList.add(settings.inputErrorClass);
 };
 
-const hideInputError = (formElement, inputElement,) => {
+const hideInputError = (formElement, inputElement, settings) => {
   const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorMessageElement.textContent = " ";
   inputElement.classList.remove(settings.inputErrorClass);
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, settings) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, settings);
   } else {
-    hideInputError(formElement, inputElement);
+    console.log(2)
+    console.log(settings)
+    hideInputError(formElement, inputElement, settings);
   };
 };
 
@@ -47,9 +49,9 @@ const disableButton = (buttonElement, settings) => {
   buttonElement.classList.add(settings.inactiveButtonClass);
 };
 
-const resetValidation = (formElement, inputList) => {
+const resetValidation = (formElement, inputList, selectors = settings) => {
   inputList.forEach((input) => {
-    hideInputError(formElement, input);
+    hideInputError(formElement, input, selectors);
   });
 }
 
@@ -71,16 +73,7 @@ const enableValidation = (settings) => {
   const formList = document.querySelectorAll(settings.formSelector);
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
-      const inputElement = formElement.querySelectorAll(settings.inputSelector);
-
-      inputElement.forEach((input) => {
-        if (!input.validity.valid) {
-          showInputError(formElement, input, input.validationMessage);
-          evt.preventDefault();
-        } else {
-          hideInputError(formElement, input);
-        };
-      });
+      evt.preventDefault();
     });
     setEventListeners(formElement, settings);
   });
