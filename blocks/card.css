@@ -42,6 +42,7 @@
   margin: 12px 0 0;
   padding: 0;
   cursor: pointer;
+  background-repeat: no-repeat;
 }
 
 .card__like-button_:hover {

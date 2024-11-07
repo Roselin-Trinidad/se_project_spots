@@ -149,9 +149,6 @@ function handleEscape(evt) {
 
 };
 
-modalElements.forEach(document => {
-  document.addEventListener("keydown", handleEscape);
-});
 
 // Profile Submission Function
 function handleEditFormSubmit(evt) {
