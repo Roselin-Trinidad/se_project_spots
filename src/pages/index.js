@@ -1,5 +1,9 @@
-import {enableValidation, settings, disableButton, resetValidation } from "./validation.js";
+import "./index.css";
+import {enableValidation, settings, disableButton, resetValidation } from "../scripts/validation.js";
+import profileAvatar from "../images/avatar.jpg";
 
+const profileImage = document.querySelector("profile-avatar");
+profileImage.src = profileAvatar;
 
 const initialCards = [
   {
