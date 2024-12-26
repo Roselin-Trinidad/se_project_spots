@@ -53,7 +53,7 @@ const api = new Api({
   }
 });
 
-api.getInitialCards()
+api.getAppInfo()
   .then((cards) => {
     cards.forEach((card) => {
       const cardElement = getCardElement(card);
@@ -63,8 +63,6 @@ api.getInitialCards()
   .catch((err) => {
     console.error(err);
   });
-
-// Initial Card Array forEach Loop
 
 // Nodes List
 const modalElements = document.querySelectorAll(".modal");
