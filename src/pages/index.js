@@ -1,7 +1,7 @@
 import "./index.css";
 import {enableValidation, settings, disableButton, resetValidation } from "../scripts/validation.js";
 import profileAvatar from "../images/avatar.jpg";
-import Api from "../scripts/API.js";
+import Api from "../utils/API.js";
 
 const profileImage = document.getElementById("profile-avatar");
 profileImage.src = profileAvatar;
@@ -59,6 +59,9 @@ api.getInitialCards()
       const cardElement = getCardElement(card);
       cardsList.append(cardElement);
     });
+  })
+  .catch((err) => {
+    console.error(err);
   });
 
 // Initial Card Array forEach Loop
