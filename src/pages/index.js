@@ -1,40 +1,67 @@
 import "./index.css";
 import {enableValidation, settings, disableButton, resetValidation } from "../scripts/validation.js";
 import profileAvatar from "../images/avatar.jpg";
+import Api from "../scripts/API.js";
 
-const profileImage = document.querySelector("profile-avatar");
+const profileImage = document.getElementById("profile-avatar");
 profileImage.src = profileAvatar;
 
-const initialCards = [
+import valThorenImage from "../images/1-photo-by-moritz-feldmann-from-pexels.jpg";
+import restaurantTerraceImage from "../images/2-photo-by-ceiline-from-pexels.jpg";
+import anOutdoorCafeImage from "../images/3-photo-by-tubanur-dogan-from-pexels.jpg";
+import aVeryLongBridgeImage from "../images/4-photo-by-maurice-laschet-from-pexels.jpg";
+import tunnelMorningImage from "../images/5-photo-by-van-anh-nguyen-from-pexels.jpg";
+import mountainHouseImage from "../images/6-photo-by-moritz-feldmann-from-pexels.jpg";
+const goldenGateBridgeImage = new URL("https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg", import.meta.url);
+
+/*const initialCards = [
   {
     Name: "Val Thorens",
-    Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"
+    Link: valThorenImage,
   },
   {
     Name: "Restaurant terrace",
-    Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+    Link: restaurantTerraceImage,
   },
   {
     Name: "An outdoor cafe",
-    Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+    Link: anOutdoorCafeImage,
   },
   {
     Name: "A very long bridge, over the forest and through the trees",
-    Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+    Link: aVeryLongBridgeImage,
   },
   {
     Name: "Tunnel with morning light",
-    Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+    Link: tunnelMorningImage,
   },
   {
     Name: "Mountain house",
-    Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+    Link: mountainHouseImage,
   },
   {
     Name: "Golden Gate Bridge",
-    Link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+    Link: goldenGateBridgeImage,
   },
-];
+]; */
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f7be2880-58ac-44a1-9646-7bf8ba324cd8",
+    "Content-Type": "application/json"
+  }
+});
+
+api.getInitialCards()
+  .then((cards) => {
+    cards.forEach((card) => {
+      const cardElement = getCardElement(card);
+      cardsList.append(cardElement);
+    });
+  });
+
+// Initial Card Array forEach Loop
 
 // Nodes List
 const modalElements = document.querySelectorAll(".modal");
@@ -114,12 +141,6 @@ function getCardElement(data) {
   cardsList[method](cardElement);
 }; */
 
-
-// Initial Card Array forEach Loop
-initialCards.forEach((item) => {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
-});
 
 // Opening and Closing Modal Functions
 function openModal(modal) {
