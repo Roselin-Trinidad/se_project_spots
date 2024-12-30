@@ -5,7 +5,8 @@ class Api {
     }
 
     getAppInfo() {
-      return Promise.all([this.getInitialCards()]);
+      // call getUserInfo in this array
+      return Promise.all([this.getInitialCards(), this.getUserInfo()]);
     }
 
     getInitialCards() {
@@ -21,6 +22,36 @@ class Api {
     }
 
     // other methods for working with the API
+    // create another method, getUserInfo
+    getUserInfo() {
+      return fetch(`${this._baseUrl}/users/me`, {
+        headers: this._headers,
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      });
+
+    }
+    editUserInfo({ name, about }) {
+      return fetch(`${this._baseUrl}/users/me`, {
+        method: "PATCH",
+        headers: this._headers,
+        // Send the data in the body as a JSON string.
+        body: JSON.stringify({
+          name,
+          about,
+        }),
+      }).then((res) => {
+        // handle the response
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject(`Error: ${res.status}`);
+      });
+    }
   }
 
   export default Api;

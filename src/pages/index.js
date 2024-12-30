@@ -53,12 +53,17 @@ const api = new Api({
   }
 });
 
+// Destructure the second item in the callback of the .then()
+
 api.getAppInfo()
-  .then((cards) => {
+  .then(([cards, userInfo]) => {
     cards.forEach((card) => {
       const cardElement = getCardElement(card);
       cardsList.append(cardElement);
     });
+    profileName.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+    profileImage.src = userInfo.avatar;
   })
   .catch((err) => {
     console.error(err);
@@ -182,10 +187,15 @@ function handleEscape(evt) {
 // Profile Submission Function
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
-}
+  api.editUserInfo({ name: editModalNameInput, about: editModalDescriptionInput})
+    .then((data) => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
+      closeModal(editModal);
+    })
+    .catch(console.error);
+};
+
 
 // Profile Edit Button Event Listeners
 profileEditButton.addEventListener("click", () => {
