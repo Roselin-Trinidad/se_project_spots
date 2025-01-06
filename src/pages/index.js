@@ -119,6 +119,12 @@ const avatarCloseButton = avatarModal.querySelector(".modal__close-button");
 const avatarSubmitButton = avatarModal.querySelector("modal__submit-button");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
+//Card Delete Modal Elements
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseButton = deleteModal.querySelector(".modal__close-button");
+const deleteModalDeleteButton = deleteModal.querySelector(".modal__submit-button");
+const deleteModalCancelButton = deleteModal.querySelector(".modal__cancel-button");
+
 // Card Element Information Functions
 function getCardElement(data) {
  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
@@ -136,7 +142,17 @@ function getCardElement(data) {
   });
 
   cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
+    openModal(deleteModal);
+    deleteModalDeleteButton.addEventListener("click", () => {
+      cardElement.remove();
+      closeModal(deleteModal);
+    });
+    deleteModalCancelButton.addEventListener("click", () => {
+      closeModal(deleteModal);
+    });
+    deleteModalCloseButton.addEventListener("click", () => {
+      closeModal(deleteModal);
+    });
   });
 
   cardImageElement.addEventListener("click", () => {

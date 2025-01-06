@@ -151,6 +151,24 @@
   opacity: 0.5;
 }
 
+.modal__cancel-button {
+  width: 156px;
+  padding: 18px 0;
+  background-color: #212121;
+  border-radius: 8px;
+  border: none;
+  color: #fcf5e5;
+  cursor: pointer;
+}
+
+.modal__cancel-button:hover {
+  opacity: 0.8;
+}
+
+.modal__cancel-button_disabled {
+  opacity: 0.5;
+}
+
 @media  screen and (max-width: 670px) {
   .modal {
     padding: 0 10px;
@@ -198,6 +216,10 @@
   }
 
   .modal__submit-button {
+    min-width: 276px;
+  }
+
+  .modal__cancel-button {
     min-width: 276px;
   }
 }

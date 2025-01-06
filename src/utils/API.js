@@ -24,6 +24,36 @@ class Api {
         });
     }
 
+    addCards([name, link]) {
+      return fetch(`${this._baseUrl}/cards/:cardId`, {
+        method: "POST",
+        headers: this._headers,
+        body: JSON.stringify({
+          name,
+          link,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json()
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        });
+    }
+
+    deleteCards() {
+      return fetch(`${this._baseUrl}/cards/:cardId`, {
+        method: "DELETE",
+        headers: this._headers,
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json()
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        });
+    }
+
     // other methods for working with the API
     // create another method, getUserInfo
     getUserInfo() {
@@ -72,6 +102,7 @@ class Api {
         Promise.reject(`Error: ${res.status}`);
       });
     }
+
   }
 
   export default Api;
