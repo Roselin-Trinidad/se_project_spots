@@ -25,9 +25,17 @@
     <main class="content">
       <!--Profile Section-->
       <section class="profile page__section">
-        <img
-        id="profile-avatar"
-        alt="Bessie Coleman" class="profile__avatar">
+        <div class="profile__avatar-container">
+          <button class="profile__avatar-button">
+            <img
+              src="<%=require('./images/pencil-logo-light.svg')%>"
+              alt="Pencil Icon"
+              class="profile__pencil-icon">
+          </button>
+          <img
+          id="profile-avatar"
+          alt="Bessie Coleman" class="profile__avatar">
+        </div>
         <div class="profile__column">
           <h1 class="profile__name">Bessie Coleman</h1>
           <p class="profile__description">Civil Aviator</p>
@@ -148,6 +156,36 @@
           src=""
           alt="">
         <p class="modal__caption"></p>
+      </div>
+    </div>
+    <!--Avatar Edit Modal-->
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button type="submit" class="modal__close-button">
+          <img
+          src="<%=require('./images/exit-icon.svg')%>"
+          alt="Exit Icon"
+          class="modal__close-button-icon">
+        </button>
+        <h2 class="modal__title">Edit Avatar</h2>
+        <form
+        name="profile-avatar-form"
+        id="edit-avatar-form"
+        class="modal__form" novalidate>
+          <label for="profile-avatar-input" class="modal__label">
+            Profile Picture
+            <input
+              type="url"
+              id="profile-avatar-input"
+              class="modal__input"
+              name="avatar"
+              placeholder="Paste the link to an image"
+              required
+              >
+            <span id="profile-avatar-input-error" class="modal__error"></span>
+          </label>
+          <button type="submit" class="modal__submit-button" onClick>Save</button>
+        </form>
       </div>
     </div>
   </div>

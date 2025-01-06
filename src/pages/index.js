@@ -76,7 +76,8 @@ const modalPopUps = document.querySelectorAll(".modal__container");
 
 // Profile Elements
 const profileEditButton = document.querySelector(".profile__edit-button");
-const addCardButton = document.querySelector(".profile__add-button")
+const addCardButton = document.querySelector(".profile__add-button");
+const avatarModalButton = document.querySelector(".profile__avatar-button")
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
@@ -110,6 +111,13 @@ const previewModal = document.querySelector("#preview-modal");
 const previewImageElement = previewModal.querySelector(".modal__image");
 const previewCaptionElement = previewModal.querySelector(".modal__caption");
 const previewCloseButton = previewModal.querySelector(".modal__close-button_type_preview");
+
+// Avatar Edit Modal Elements
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector("#edit-avatar-form");
+const avatarCloseButton = avatarModal.querySelector(".modal__close-button");
+const avatarSubmitButton = avatarModal.querySelector("modal__submit-button");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 // Card Element Information Functions
 function getCardElement(data) {
@@ -187,14 +195,32 @@ function handleEscape(evt) {
 // Profile Submission Function
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  api.editUserInfo({ name: editModalNameInput, about: editModalDescriptionInput})
+  api.editUserInfo({
+    name: editModalNameInput.value,
+    about: editModalDescriptionInput.value
+  })
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch((err) => {
+      console.error(err);
+    });
 };
+
+// Avatar Submisson Function
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  api.editAvatarInfo(avatarInput.value)
+    .then((data) => {
+      profileImage.src = data.avatar;
+      closeModal(avatarModal)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+}
 
 
 // Profile Edit Button Event Listeners
@@ -209,7 +235,7 @@ editModalCloseButton.addEventListener("click", () => {
   closeModal(editModal);
 });
 
-editFormElement.addEventListener("submit", handleEditFormSubmit);
+//avatarSubmitButton.addEventListener("submit", handleAvatarSubmit);
 
 // Add Card Event Button Listener
 addCardButton.addEventListener("click", () => {
@@ -219,6 +245,17 @@ addCardButton.addEventListener("click", () => {
 closeAddCardModalButton.addEventListener("click", () => {
   closeModal(addCardModal);
 });
+
+// Avatar Edit Modal Button Event Listener
+avatarModalButton.addEventListener("click", () => {
+  openModal(avatarModal);
+})
+
+avatarCloseButton.addEventListener("click", () => {
+  closeModal(avatarModal);
+})
+
+avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 // Add Card Submission Function and Listener
 function handleAddCardSubmit(evt) {
