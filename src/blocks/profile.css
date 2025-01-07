@@ -179,8 +179,6 @@
     border-radius: 6px;
     top: 52px;
     left: 52px;
-    /* TODO - set content of :: after element to "" */
-    /* TODO - finish mobile avatar button styles */
   }
 
   .profile__avatar-button::after {
