@@ -184,9 +184,8 @@
 }
 
 .modal__delete-button:hover {
-  opacity: 0.8;
+  background-color: #FF3333
 }
-
 
 .modal__cancel-button {
   width: 156px;
@@ -198,7 +197,8 @@
 }
 
 .modal__cancel-button:hover {
-  opacity: 0.8;
+  background-color: #212121;
+  color:#ffffff
 }
 
 @media  screen and (max-width: 670px) {
@@ -218,11 +218,23 @@
   max-height: 100vh;
   }
 
+  .modal__container_type_delete {
+    max-width: 288px;
+  }
+
   .modal__title {
     font-size: 20px;
     line-height: 1;
     font-weight: 500;
     margin: 10px 0 32px;
+  }
+
+  .modal__title_delete {
+    line-height: 1.2;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    text-align: center;
+
   }
 
   .modal__close-button {
@@ -235,6 +247,11 @@
     left: 248px;
     width: 40px;
     height: 40px;
+  }
+
+  .modal__close-button_type_delete {
+    top: -48px;
+    left: 254px;
   }
 
   .modal__label {
@@ -251,7 +268,17 @@
     min-width: 276px;
   }
 
+  .modal__delete-button-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .modal__delete-button {
+
+  }
+
   .modal__cancel-button {
-    min-width: 276px;
+    width: 156px;
   }
 }

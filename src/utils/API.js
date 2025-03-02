@@ -24,13 +24,14 @@ class Api {
         });
     }
 
-    addCard([name, link]) {
+    addCard([ Name, Link ]) {
+      console.log(Name, Link)
       return fetch(`${this._baseUrl}/cards`), {
         method: "POST",
         headers: this._headers,
         body: JSON.stringify({
-          name,
-          link,
+          Name,
+          Link,
         }),
       }
       .then((res) => {
@@ -41,8 +42,8 @@ class Api {
         });
     }
 
-    deleteCard() {
-      return fetch(`${this._baseUrl}/cards/:cardId`, {
+    deleteCard(id) {
+      return fetch(`${this._baseUrl}/cards/${id}`, {
         method: "DELETE",
         headers: this._headers,
       })
