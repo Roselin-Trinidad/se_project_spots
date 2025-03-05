@@ -16,32 +16,32 @@ const goldenGateBridgeImage = new URL("https://practicum-content.s3.us-west-1.am
 
 /*const initialCards = [
   {
-    Name: "Val Thorens",
-    Link: valThorenImage,
+    name: "Val Thorens",
+    link: valThorenImage,
   },
   {
-    Name: "Restaurant terrace",
-    Link: restaurantTerraceImage,
+    name: "Restaurant terrace",
+    link: restaurantTerraceImage,
   },
   {
-    Name: "An outdoor cafe",
-    Link: anOutdoorCafeImage,
+    name: "An outdoor cafe",
+    link: anOutdoorCafeImage,
   },
   {
-    Name: "A very long bridge, over the forest and through the trees",
-    Link: aVeryLongBridgeImage,
+    name: "A very long bridge, over the forest and through the trees",
+    link: aVeryLongBridgeImage,
   },
   {
-    Name: "Tunnel with morning light",
-    Link: tunnelMorningImage,
+    name: "Tunnel with morning light",
+    link: tunnelMorningImage,
   },
   {
-    Name: "Mountain house",
-    Link: mountainHouseImage,
+    name: "Mountain house",
+    link: mountainHouseImage,
   },
   {
-    Name: "Golden Gate Bridge",
-    Link: goldenGateBridgeImage,
+    name: "Golden Gate Bridge",
+    link: goldenGateBridgeImage,
   },
 ]; */
 
@@ -129,26 +129,46 @@ const deleteModalCloseButton = deleteModal.querySelector(".modal__close-button")
 const deleteModalDeleteButton = deleteModal.querySelector("#delete-button-submit");
 const deleteModalCancelButton = deleteModal.querySelector(".modal__cancel-button");
 
+function handleLike(evt, id) {
+  //evt.target.classList.toggle("card__like-button_liked")
+  const cardLikeButton = evt.target.classList.contains("card__like-button");
+  const isLiked = cardLikeButton ? true : false;
+  api.handleLikeStatus(id, !isLiked)
+  .then((evt) => {
+    if (evt) {
+      cardLikeButton.classList.toggle("class__like-button_liked");
+    } else (!evt); {
+      cardLikeButton.classList.toggle("class__like-button_liked");
+    }
+    // cardLikeButton.classList.toggle("class__like-button_liked");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+}
+
 // Card Element Information Functions
 function getCardElement(data) {
- const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+
+  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
   const cardNameElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardLikeButton = cardElement.querySelector(".card__like-button");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+
 
   cardNameElement.textContent = data.Name;
   cardImageElement.src = data.Link;
   cardImageElement.alt = data.Name;
 
 
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-button_liked");
+  cardLikeButton.addEventListener("click", (evt) => {
+    handleLike(evt, data._id);
   });
 
-  cardDeleteButton.addEventListener("click", () =>
-    handleDeleteCard(cardElement, data_id)
-  );
+  cardDeleteButton.addEventListener("click", () => {
+    handleDeleteCard(evt, data._id)
+});
 
   cardImageElement.addEventListener("click", () => {
     openModal(previewModal);
@@ -202,7 +222,6 @@ function handleEscape(evt) {
 
 };
 
-
 // Profile Submission Function
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
@@ -240,8 +259,8 @@ function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api.deleteCard(selectedCardId)
   .then(() => {
-    selectedCardId.remove();
-      closeModal(deleteModal);
+    selectedCard.remove();
+    closeModal(deleteModal);
   })
   .catch((err) => {
     console.error(err);
@@ -290,10 +309,10 @@ avatarSubmitButton.addEventListener("submit", handleAvatarSubmit);
 
 // Add Card Submission Function and Listener
 function handleAddCardSubmit(evt) {
-  const Name = addCardNameInput.value;
-  const Link = addCardLinkInput.value;
+  const name = addCardNameInput.value;
+  const link = addCardLinkInput.value;
   evt.preventDefault();
-  api.addCard([ Name, Link,])
+  api.addCard({ name, link })
     .then((data) => {
       const cardElement = getCardElement(data);
       cardsList.prepend(cardElement);

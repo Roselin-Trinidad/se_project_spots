@@ -24,16 +24,15 @@ class Api {
         });
     }
 
-    addCard([ Name, Link ]) {
-      console.log(Name, Link)
-      return fetch(`${this._baseUrl}/cards`), {
+    addCard({ name, link }) {
+      return fetch(`${this._baseUrl}/cards`, {
         method: "POST",
         headers: this._headers,
         body: JSON.stringify({
-          Name,
-          Link,
+          name,
+          link,
         }),
-      }
+      })
       .then((res) => {
           if (res.ok) {
             return res.json()
@@ -55,8 +54,6 @@ class Api {
         });
     }
 
-    // other methods for working with the API
-    // create another method, getUserInfo
     getUserInfo() {
       return fetch(`${this._baseUrl}/users/me`, {
         headers: this._headers,
@@ -102,6 +99,19 @@ class Api {
         }
         Promise.reject(`Error: ${res.status}`);
       });
+    }
+
+    handleLikeStatus(id, isLiked) {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        method:  isLiked ? "DELETE" : "PUT",
+        headers: this._headers,
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json()
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        });
     }
 
   }
