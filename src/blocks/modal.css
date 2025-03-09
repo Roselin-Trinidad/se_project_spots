@@ -44,6 +44,10 @@
   max-height: 80vh;
 }
 
+.modal__container_type_delete {
+  max-width: 630px;
+}
+
 .modal__image {
   max-width: 100%;
   max-height: 100%;
@@ -85,10 +89,22 @@
   align-self: center;
 }
 
+.modal__close-button_type_delete {
+  background-image: url(../images/exit-delete-icon.svg);
+  top: 0;
+  right: -50px;
+
+}
+
 .modal__title {
   margin: 0 0 32px;
   font-size: 32px;
   line-height: 1;
+}
+
+.modal__title_delete {
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .modal__label {
@@ -151,6 +167,40 @@
   opacity: 0.5;
 }
 
+.modal__delete-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modal__delete-button {
+  width: 156px;
+  padding: 18px 32px;
+  background-color: #FF6565;
+  border-radius: 8px;
+  border: none;
+  color: #212121;
+  cursor: pointer;
+}
+
+.modal__delete-button:hover {
+  background-color: #FF3333
+}
+
+.modal__cancel-button {
+  width: 156px;
+  padding: 18px 32px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px, solid, #212121;
+  cursor: pointer;
+}
+
+.modal__cancel-button:hover {
+  background-color: #212121;
+  color:#ffffff
+}
+
 @media  screen and (max-width: 670px) {
   .modal {
     padding: 0 10px;
@@ -168,11 +218,23 @@
   max-height: 100vh;
   }
 
+  .modal__container_type_delete {
+    max-width: 288px;
+  }
+
   .modal__title {
     font-size: 20px;
     line-height: 1;
     font-weight: 500;
     margin: 10px 0 32px;
+  }
+
+  .modal__title_delete {
+    line-height: 1.2;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    text-align: center;
+
   }
 
   .modal__close-button {
@@ -187,6 +249,11 @@
     height: 40px;
   }
 
+  .modal__close-button_type_delete {
+    top: -48px;
+    left: 254px;
+  }
+
   .modal__label {
     margin: 0 0 24px;
   }
@@ -199,5 +266,19 @@
 
   .modal__submit-button {
     min-width: 276px;
+  }
+
+  .modal__delete-button-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .modal__delete-button {
+
+  }
+
+  .modal__cancel-button {
+    width: 156px;
   }
 }

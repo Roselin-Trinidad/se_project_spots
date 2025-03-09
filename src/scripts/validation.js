@@ -33,7 +33,11 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+
 const toggleButtonState = (inputList, buttonElement, settings) => {
+  if (!inputList || inputList.length === 0) {
+    return;
+  }
   if (hasInvalidInput(inputList)) {
     disableButton(buttonElement, settings);
   } else {
@@ -41,6 +45,8 @@ const toggleButtonState = (inputList, buttonElement, settings) => {
     buttonElement.classList.remove(settings.inactiveButtonClass);
   }
 };
+
+
 
 export const disableButton = (buttonElement, settings) => {
   buttonElement.disabled = true;
