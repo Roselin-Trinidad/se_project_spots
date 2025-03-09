@@ -237,6 +237,7 @@ function handleEditFormSubmit(evt) {
     }).then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
+      closeModal(editModal);
     });
   }
   handleSubmit(makeRequest, evt);
@@ -252,6 +253,7 @@ function handleAvatarSubmit(evt) {
       avatarInput.value
     ).then((data) => {
       profileImage.src = data.avatar;
+      closeModal(avatarModal);
     });
   }
   handleSubmit(makeRequest, evt);
@@ -265,6 +267,7 @@ function handleDeleteSubmit(evt) {
       selectedCardId
     ).then(() => {
       selectedCard.remove();
+      closeModal(deleteModal);
     });
   }
   handleSubmit(makeRequest, evt, "Deleting...");
@@ -327,6 +330,7 @@ function handleAddCardSubmit(evt) {
       cardsList.prepend(cardElement);
       addCardModalForm.reset();
       disableButton(addCardModalSubmitButton, settings);
+      closeModal(addCardModal)
     })
   }
   handleSubmit(makeRequest, evt);
